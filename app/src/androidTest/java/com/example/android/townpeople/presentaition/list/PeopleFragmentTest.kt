@@ -27,7 +27,7 @@ class PeopleFragmentTest {
             Navigation.setViewNavController(requireView(), navController)
         }
 
-        onView(withId(R.id.button)).perform(ViewActions.click())
+        //onView(withId(R.id.button)).perform(ViewActions.click())
 
         val newDestination = navController.currentDestination?.id
         assertTrue(newDestination == R.id.peopleDetailFragment)

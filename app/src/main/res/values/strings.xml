@@ -2,4 +2,7 @@
     <string name="app_name">TownPeople</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_load_people_title">Couldn’t load the town people</string>
+    <string name="connection_error_description">The Internet connection appears to be offline.</string>
+    <string name="retry">Retry</string>
 </resources>
