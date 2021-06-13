@@ -13,9 +13,10 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.android.townpeople.R
+import com.example.android.townpeople.data.Person
+import com.example.android.townpeople.testutil.RecyclerViewMatcher
 import junit.framework.Assert
 import junit.framework.Assert.assertTrue
 import org.junit.After
@@ -73,6 +74,26 @@ class PeopleFragmentTest {
         mockedViewModel._state.postValue(PeopleViewModelState.Success(emptyList()))
 
         onView(withId(R.id.peopleRecyclerView)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun peopleRecyclerView_shows_expectedData_from_Success_state() {
+        launchFragmentInContainer<PeopleFragment>(themeResId = R.style.Theme_MaterialComponents)
+
+        val expectedPeople = listOf(
+            Person(
+                "", "Name1", emptyList(), friends = emptyList()
+            ),
+            Person(
+                "", "Name2", emptyList(), friends = emptyList()
+            )
+        )
+        mockedViewModel._state.postValue(PeopleViewModelState.Success(expectedPeople))
+
+        onView(
+            RecyclerViewMatcher(R.id.peopleRecyclerView)
+                .atPositionOnView(0, R.id.nameTextView)
+        ).check(matches(withText(expectedPeople[0].name)))
     }
 
     @Test

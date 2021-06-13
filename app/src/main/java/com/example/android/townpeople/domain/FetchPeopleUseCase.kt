@@ -6,10 +6,10 @@ class FetchPeopleUseCase: UseCase<Any?, List<Any>> {
     override suspend fun invoke(params: Any?): List<Person> {
         return listOf(
             Person(
-                "", "Name1", emptyList(), friends = emptyList()
+                "https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png", "Name1", emptyList(), friends = emptyList()
             ),
             Person(
-                "", "Name2", emptyList(), friends = emptyList()
+                "https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png", "Name2", emptyList(), friends = emptyList()
             )
         )
     }
