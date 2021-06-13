@@ -16,7 +16,11 @@ import org.koin.android.ext.android.get
 class PeopleFragment : Fragment() {
 
     private val viewModel: PeopleViewModel by lazy { get() }
-    private val peopleListAdapter by lazy { PeopleListAdapter() }
+    private val peopleListAdapter by lazy { PeopleListAdapter {
+        findNavController().navigate(
+            PeopleFragmentDirections.actionPeopleFragmentToPeopleDetailFragment(it)
+        )
+    } }
 
     override fun onCreateView(
         inflater: LayoutInflater,

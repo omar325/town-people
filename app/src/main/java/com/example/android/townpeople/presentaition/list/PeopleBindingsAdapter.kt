@@ -28,6 +28,7 @@ fun setDataFromState(view: View, state: PeopleViewModelState) {
 fun setImageFromPerson(imageView: ImageView, imageUrl: String) {
     Glide.with(imageView.context)
         .load(imageUrl)
+        .centerCrop()
         .into(imageView)
 }
 

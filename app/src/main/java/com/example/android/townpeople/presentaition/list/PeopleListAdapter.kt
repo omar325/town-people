@@ -10,7 +10,9 @@ import com.example.android.townpeople.R
 import com.example.android.townpeople.data.Person
 import com.example.android.townpeople.databinding.PersonItemBinding
 
-class PeopleListAdapter: ListAdapter<Person, PersonViewHolder>(CounterDiffCallback) {
+class PeopleListAdapter(
+    private val onPersonClickAction: (person: Person) -> Unit
+): ListAdapter<Person, PersonViewHolder>(CounterDiffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -21,7 +23,7 @@ class PeopleListAdapter: ListAdapter<Person, PersonViewHolder>(CounterDiffCallba
             R.layout.person_item,
             parent,
             false
-        )
+        ), onPersonClickAction
     )
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) =
@@ -30,9 +32,13 @@ class PeopleListAdapter: ListAdapter<Person, PersonViewHolder>(CounterDiffCallba
 
 class PersonViewHolder(
     private val binding: PersonItemBinding,
+    private val onPersonClickAction: (person: Person) -> Unit
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(newPerson: Person) {
-        binding.person = newPerson
+        binding.apply {
+            person = newPerson
+            root.setOnClickListener { onPersonClickAction(newPerson) }
+        }
     }
 }
 

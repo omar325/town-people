@@ -18,5 +18,9 @@
         android:id="@+id/peopleDetailFragment"
         android:name="com.example.android.townpeople.presentaition.detail.PeopleDetailFragment"
         android:label="fragment_people_detail"
-        tools:layout="@layout/fragment_people_detail" />
+        tools:layout="@layout/fragment_people_detail" >
+        <argument
+            android:name="person"
+            app:argType="com.example.android.townpeople.data.Person" />
+    </fragment>
 </navigation>
