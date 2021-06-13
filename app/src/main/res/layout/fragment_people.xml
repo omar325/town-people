@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.android.townpeople.presentaition.list.PeopleViewModel" />
+    </data>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +25,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibilityFromState="@{viewmodel.state}"/>
 
         <include
             android:id="@+id/errorLayout"
@@ -30,7 +37,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibilityFromState="@{viewmodel.state}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/peopleRecyclerView"
@@ -40,7 +48,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:visibilityFromState="@{viewmodel.state}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -55,3 +64,4 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
