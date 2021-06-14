@@ -10,6 +10,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
@@ -68,7 +69,7 @@ class PeopleFragmentTest {
     }
 
     @Test
-    fun hasCountersLayout_VISIBLE_when_viewModelState_is_Success() {
+    fun peopleRecyclerView_VISIBLE_when_viewModelState_is_Success() {
         launchFragmentInContainer<PeopleFragment>(themeResId = R.style.Theme_MaterialComponents)
 
         mockedViewModel._state.postValue(PeopleViewModelState.Success(emptyList()))
@@ -82,10 +83,10 @@ class PeopleFragmentTest {
 
         val expectedPeople = listOf(
             Person(
-                "", "Name1", emptyList(), friends = emptyList()
+                "1", "Name1", emptyList(), friends = emptyList()
             ),
             Person(
-                "", "Name2", emptyList(), friends = emptyList()
+                "1", "Name2", emptyList(), friends = emptyList()
             )
         )
         mockedViewModel._state.postValue(PeopleViewModelState.Success(expectedPeople))
@@ -102,14 +103,27 @@ class PeopleFragmentTest {
             ApplicationProvider.getApplicationContext()
         )
 
-        launchFragmentInContainer<PeopleFragment>(themeResId = R.style.Theme_AppCompat).withFragment {
+        launchFragmentInContainer<PeopleFragment>(themeResId = R.style.Theme_MaterialComponents).withFragment {
             navController.setGraph(R.navigation.nav_graph)
             Navigation.setViewNavController(requireView(), navController)
         }
 
-        //onView(withId(R.id.button)).perform(ViewActions.click())
+        val expectedPeople = listOf(
+            Person(
+                "1", "Name1", emptyList(), friends = emptyList()
+            ),
+            Person(
+                "1", "Name2", emptyList(), friends = emptyList()
+            )
+        )
+        mockedViewModel._state.postValue(PeopleViewModelState.Success(expectedPeople))
+
+        onView(
+            RecyclerViewMatcher(R.id.peopleRecyclerView)
+                .atPositionOnView(0, R.id.nameTextView)
+        ).perform(click())
 
         val newDestination = navController.currentDestination?.id
-        //assertTrue(newDestination == R.id.peopleDetailFragment)
+        assertTrue(newDestination == R.id.peopleDetailFragment)
     }
 }

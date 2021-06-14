@@ -2,17 +2,18 @@ package com.example.android.townpeople.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 data class Person(
-    val thumbnail: String = "",
-    val name: String = "",
-    val professions: List<String>,
-    val weight: Double = 0.0,
-    val id: Int = 0,
-    val age: Int = 0,
-    val friends: List<String>,
-    val height: Double = 0.0,
-    val hairColor: String = ""
+    @field:SerializedName("thumbnail") val thumbnail: String = "",
+    @field:SerializedName("name") val name: String = "",
+    @field:SerializedName("professions") val professions: List<String>,
+    @field:SerializedName("weight") val weight: Double = 0.0,
+    @field:SerializedName("id") val id: Int = 0,
+    @field:SerializedName("age") val age: Int = 0,
+    @field:SerializedName("friends") val friends: List<String>,
+    @field:SerializedName("height") val height: Double = 0.0,
+    @field:SerializedName("hair_color") val hairColor: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",

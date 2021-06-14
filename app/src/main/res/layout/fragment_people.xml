@@ -38,7 +38,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:visibilityFromState="@{viewmodel.state}"/>
+            app:visibilityFromState="@{viewmodel.state}"
+            app:configureWithViewModel="@{viewmodel}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/peopleRecyclerView"

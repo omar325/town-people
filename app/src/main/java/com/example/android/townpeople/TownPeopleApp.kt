@@ -1,6 +1,7 @@
 package com.example.android.townpeople
 
 import android.app.Application
+import com.example.android.townpeople.data.RemoteRepository
 import com.example.android.townpeople.domain.FetchPeopleUseCase
 import com.example.android.townpeople.presentaition.list.PeopleViewModel
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +22,8 @@ class TownPeopleApp: Application() {
                             fetchPeopleUseCase = get(),
                         )
                     }
-                    factory { FetchPeopleUseCase() }
+                    factory { FetchPeopleUseCase(get()) }
+                    single { RemoteRepository.create() }
                 })
         }
     }

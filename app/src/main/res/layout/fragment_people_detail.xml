@@ -1,21 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="person"
             type="com.example.android.townpeople.data.Person" />
     </data>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/leftGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="25dp"/>
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/rightGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="25dp"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/centerGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".5"/>
+
+            <ImageView
+                android:id="@+id/colorIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_color"
+                app:layout_constraintBottom_toBottomOf="@+id/hairColorLabel"
+                app:layout_constraintStart_toStartOf="@+id/leftGuideline"
+                app:layout_constraintTop_toTopOf="@+id/hairColor" />
+
+            <TextView
+                android:id="@+id/hairColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:text="@{person.hairColor}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+                app:layout_constraintStart_toEndOf="@+id/colorIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Hair Color" />
+
+            <TextView
+                android:id="@+id/hairColorLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/hair_color"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+                app:layout_constraintStart_toEndOf="@+id/colorIcon"
+                app:layout_constraintTop_toBottomOf="@+id/hairColor"
+                tools:text="Hair Color" />
+
+            <ImageView
+                android:id="@+id/weightIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_human"
+                app:layout_constraintBottom_toBottomOf="@+id/heightTextLabel"
+                app:layout_constraintStart_toStartOf="@+id/leftGuideline"
+                app:layout_constraintTop_toTopOf="@+id/weightText" />
+
+            <TextView
+                android:id="@+id/weightText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:text="@{String.valueOf(person.weight)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintEnd_toStartOf="@+id/centerGuideline"
+                app:layout_constraintStart_toEndOf="@+id/weightIcon"
+                app:layout_constraintTop_toBottomOf="@+id/hairColorLabel"
+                tools:text="Weight" />
+
+            <TextView
+                android:id="@+id/weightTextLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/weight"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                app:layout_constraintEnd_toStartOf="@+id/centerGuideline"
+                app:layout_constraintStart_toEndOf="@+id/weightIcon"
+                app:layout_constraintTop_toBottomOf="@+id/weightText" />
+
+            <TextView
+                android:id="@+id/heightText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(person.height)}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+                app:layout_constraintStart_toStartOf="@+id/centerGuideline"
+                app:layout_constraintTop_toTopOf="@+id/weightText"
+                tools:text="height" />
+
+            <TextView
+                android:id="@+id/heightTextLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/height"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+                app:layout_constraintStart_toStartOf="@+id/centerGuideline"
+                app:layout_constraintTop_toBottomOf="@+id/heightText" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/friendsPager"
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:layout_marginTop="5dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                app:friendsFromPerson="@{person.friends}"
+                app:layout_constraintTop_toBottomOf="@id/heightTextLabel"
+                android:visibility="@{person.friends.size() > 0 ? View.VISIBLE : View.GONE}"/>
+
+            <TextView
+                android:id="@+id/professions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/professions"
+                android:layout_marginTop="10dp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintStart_toStartOf="@+id/leftGuideline"
+                app:layout_constraintTop_toBottomOf="@+id/friendsPager" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:professionsFromPerson="@{person.professions}"
+                app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+                app:layout_constraintStart_toStartOf="@+id/leftGuideline"
+                app:layout_constraintTop_toBottomOf="@id/professions"
+                app:singleLine="false" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,22 +186,38 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
                     app:cardBackgroundColor="?attr/colorPrimarySurface"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/personImageView"
-                    app:contentPadding="30dp">
-                    <TextView
+                    app:contentPadding="25dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="Name"
-                        android:text="@{person.name}"
-                        android:textAppearance="?attr/textAppearanceHeadline3"
-                        android:maxLines="1"
-                        android:textColor="?attr/colorOnPrimarySurface"
-                        android:ellipsize="end"
-                        android:layout_gravity="center"/>
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/personDetailName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Name"
+                            android:text="@{person.name}"
+                            android:textAppearance="?attr/textAppearanceHeadline4"
+                            android:textColor="?attr/colorOnPrimarySurface"
+                            android:ellipsize="end"
+                            android:layout_gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/personDetailAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Age"
+                            app:formatAge="@{person.age}"
+                            android:textAppearance="?attr/textAppearanceSubtitle1"
+                            android:textColor="?attr/colorOnPrimarySurface"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

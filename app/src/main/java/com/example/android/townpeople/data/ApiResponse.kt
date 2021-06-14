@@ -1,5 +1,7 @@
 package com.example.android.townpeople.data
 
+import com.google.gson.annotations.SerializedName
+
 data class ApiResponse(
-    val people: List<Person>
+    @field:SerializedName("Brastlewark") val people: List<Person>
 )

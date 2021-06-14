@@ -5,4 +5,10 @@
     <string name="error_load_people_title">Couldn’t load the town people</string>
     <string name="connection_error_description">The Internet connection appears to be offline.</string>
     <string name="retry">Retry</string>
+    <string name="age">Age: %d</string>
+    <string name="hair_color">Hair color</string>
+    <string name="friend">Friend</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="professions">Professions</string>
 </resources>

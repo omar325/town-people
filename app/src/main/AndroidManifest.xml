@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TownPeople"
         android:name=".TownPeopleApp">
-        <activity android:name=".presentaition.MainActivity">
+        <activity
+            android:name=".presentaition.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
